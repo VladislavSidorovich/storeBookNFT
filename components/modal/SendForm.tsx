@@ -10,6 +10,9 @@ import { MintNFt } from "../../methods/blockchain/writeContract";
 import { toast } from "react-toastify";
 import { notifyError, notifyInfo, notifySuccess } from "../toasts/toasts";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Image from 'next/image';
+import closeModalicon from '../../static/svg/closeModal.svg';
+import like from '../../static/svg/like.svg';
 
 type Inputs = {
   fio: string;
@@ -26,36 +29,37 @@ function SendForm() {
   const [isSend, setIsSend] = useState(false);
   const [formData, setFormData] = useState<Inputs | null>(null);
 
-  const { data, txStatus, error, isPending, isSuccess, mintNFTWrite } = MintNFt(
-    {
-      titleCounter: isChecked,
-      msgValue: isChecked ? products[isChecked - 1]?.price : BigInt(0),
-    }
-  );
+  const { data, txStatus, error, isPending, isSuccess, mintNFTWrite } = MintNFt({
+    titleCounter: isChecked,
+    msgValue: isChecked ? products[isChecked - 1]?.price : BigInt(0),
+  });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    mintNFTWrite?.();
-    setFormData(data);
+    if (mintNFTWrite) {
+      mintNFTWrite();
+      setFormData(data);
+    }
   };
 
   useEffect(() => {
-    if (txStatus === "success" && formData) {
-      try {
-        const addDocument = async () => {
+    const addDocument = async () => {
+      if (txStatus === "success" && formData) {
+        try {
           const docRef = await addDoc(collection(db, "sender"), {
             fio: formData.fio,
-            tel: formData?.add || "",
+            tel: formData.add || "",
             email: formData.email,
           });
           setIsSend(true);
           dispatch(setCompleted(isChecked as number));
           console.log("Document written with ID: ", docRef.id);
-        };
-        addDocument();
-      } catch (e) {
-        console.error("Error adding document: ", e);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
       }
-    }
+    };
+
+    addDocument();
   }, [txStatus, formData, isChecked, dispatch, db]);
 
   useEffect(() => {
@@ -97,6 +101,8 @@ function SendForm() {
     return () => clearTimeout(timeout);
   }, [error, isPending, isSuccess, txStatus]);
 
+  const closeModal = () => dispatch(close());
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -104,7 +110,7 @@ function SendForm() {
       exit={{ opacity: 0 }}
       onClick={
         !((data && txStatus === "pending") || isPending)
-          ? () => dispatch(close())
+          ? closeModal
           : undefined
       }
       className="modal"
@@ -115,15 +121,28 @@ function SendForm() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="modal-content"
       >
         {isSend ? (
-          <div>Данные успешно отправлены!</div>
+          <div className="modal-overlays" onClick={closeModal}>
+            <div className="modals" onClick={(e) => e.stopPropagation()}>
+              <div className="modals-contents">
+                <button className="modals-closes" onClick={closeModal}>
+                  <Image src={closeModalicon} alt="Close" />
+                </button>
+                <div className="modals-icons">
+                  <Image src={like} alt="Like" />
+                </div>
+                <div className="modals-messages">
+                  Покупка совершена
+                </div>
+              </div>
+            </div>
+          </div>
         ) : (
-          <div>
+          <div className="modal-content">
             {!((data && txStatus === "pending") || isPending) && (
               <button
-                onClick={() => dispatch(close())}
+                onClick={closeModal}
                 className="modal-close wrap"
               >
                 &times;
@@ -186,7 +205,9 @@ function SendForm() {
             <p className="policy">
               Нажимая на кнопку, Вы соглашаетесь с условиями{" "}
               <b>
-                <a  target="_blank" href="https://arweave.net/ZVmszxUmw-IaKSLRRwhDdMQ8fsjXod55tOCBKoqPAnE">лицензионного соглашения</a>
+                <a target="_blank" href="https://arweave.net/ZVmszxUmw-IaKSLRRwhDdMQ8fsjXod55tOCBKoqPAnE">
+                  лицензионного соглашения
+                </a>
               </b>
             </p>
           </div>
