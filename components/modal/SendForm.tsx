@@ -26,37 +26,36 @@ function SendForm() {
   const [isSend, setIsSend] = useState(false);
   const [formData, setFormData] = useState<Inputs | null>(null);
 
-  const { data, txStatus, error, isPending, isSuccess, mintNFTWrite } = MintNFt({
-    titleCounter: isChecked,
-    msgValue: isChecked ? products[isChecked - 1]?.price : BigInt(0),
-  });
+  const { data, txStatus, error, isPending, isSuccess, mintNFTWrite } = MintNFt(
+    {
+      titleCounter: isChecked,
+      msgValue: isChecked ? products[isChecked - 1]?.price : BigInt(0),
+    }
+  );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    if (mintNFTWrite) {
-      mintNFTWrite();
-      setFormData(data);
-    }
+    mintNFTWrite?.();
+    setFormData(data);
   };
 
   useEffect(() => {
-    const addDocument = async () => {
-      if (txStatus === "success" && formData) {
-        try {
+    if (txStatus === "success" && formData) {
+      try {
+        const addDocument = async () => {
           const docRef = await addDoc(collection(db, "sender"), {
             fio: formData.fio,
-            tel: formData.add || "",
+            tel: formData?.add || "",
             email: formData.email,
           });
           setIsSend(true);
           dispatch(setCompleted(isChecked as number));
           console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
+        };
+        addDocument();
+      } catch (e) {
+        console.error("Error adding document: ", e);
       }
-    };
-
-    addDocument();
+    }
   }, [txStatus, formData, isChecked, dispatch, db]);
 
   useEffect(() => {
@@ -187,9 +186,7 @@ function SendForm() {
             <p className="policy">
               Нажимая на кнопку, Вы соглашаетесь с условиями{" "}
               <b>
-                <a target="_blank" href="https://arweave.net/ZVmszxUmw-IaKSLRRwhDdMQ8fsjXod55tOCBKoqPAnE">
-                  лицензионного соглашения
-                </a>
+                <a  target="_blank" href="https://arweave.net/ZVmszxUmw-IaKSLRRwhDdMQ8fsjXod55tOCBKoqPAnE">лицензионного соглашения</a>
               </b>
             </p>
           </div>
