@@ -62,6 +62,9 @@ const TabContainerMMACC = styled.div`
   @media screen and ( max-width: 700px ){
     width: 100%;
   }  
+   @media screen and ( max-width: 800px ) and ( min-width: 701px ){
+    width: 100%;
+  }  
 `;
 
 const Tab = styled.button<{ active: boolean }>`
