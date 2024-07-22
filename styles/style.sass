@@ -82,7 +82,7 @@ html
     
 
 .products
-    height: 65vw
+  
     background-color: #000
     color: white
 
@@ -189,7 +189,12 @@ html
         .mob_none
             display: none
 
-@media screen and ( max-width: 1000px )
+@media screen and (min-width: 840px ) and (max-width: 1300px )
+    .closedSection
+        height: 125vw
+   
+
+@media screen and (min-width: 840px ) and ( max-width: 1000px )
     .main
         text-align: left
         &__text
@@ -226,7 +231,95 @@ html
             display: block
 
     .closedSection
-        height: 255vw
+        height: 155vw
+   
+
+    .nft
+        padding: 32px 35px
+        border-radius: 35px
+
+        &__caption
+            font-size: 14px
+
+        &__heading
+            min-height: 90px
+            font-size: 18px
+
+        &__price
+            font-size: 32px
+
+        &__time
+            margin: 15px 0 30px
+
+    .about
+        padding: 20px 0 80px
+        .container
+            padding: 0
+            display: block
+
+        img
+            display: block
+            height: auto
+            border-radius: 0
+
+        &__heading
+            padding: 0 20px
+
+        &__text
+            font-size: 14px
+            padding: 0 20px
+
+        .mob_none
+            display: none
+
+        .col
+            width: 100%
+            max-width: 100%
+            margin-bottom: 20px
+            &:first-child
+                p
+                    padding: 0 20px
+
+@media screen and ( min-width: 701px ) and ( max-width: 840px )
+
+    .main
+        text-align: left
+        &__text
+          margin: 0
+          font-size: 14px
+
+        h1
+            font-size: 20px
+
+    .instruction
+        .title
+            display: block
+            margin-bottom: 20px
+
+        h2
+            margin-bottom: 10px
+
+        p
+            max-width: 100%
+            font-size: 14px
+            padding: 0
+
+        ol
+            display: flex
+            flex-direction: column
+            margin: 0
+            li
+                font-size: 14px
+                padding: 20px 20px 20px 70px
+                width: 100%
+
+    .products
+        height: 125vw
+        .wrap
+            display: block
+
+    .closedSection
+        height: 175vw
    
 
     .nft
@@ -275,6 +368,7 @@ html
                 p
                     padding: 0 20px
 
+
 @media screen and ( max-width: 450px )
     .nft
         height: 165vw
@@ -284,9 +378,9 @@ html
      
     
 
-@media screen and ( max-width: 370px )
+@media screen and ( max-width: 380px )
     .nft
-        height: 170vw   
+        height: 175vw   
 
     .closedSection 
         height: 300vw
