@@ -720,7 +720,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className="products methodology closedSection" id="products">
+      <section className="products methodology closedSection" id="productsMMACC">
         <div className="container">
           <h2>
             Материалы ММАСС
