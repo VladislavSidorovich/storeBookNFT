@@ -1,7 +1,7 @@
 .about-image-box {
   position: relative;
   margin-bottom: 30px;
-  width: 100%;
+  width: 100% !important;
   height: 400px;
 }
 
@@ -62,9 +62,15 @@
 
 @media screen and (max-width: 1000px) {
   .about-image-box {
-    margin: 20px;
+    margin: 10px;
+    width: 40vw !important;
+    height: 40vw !important;
     width: auto;
     overflow: hidden;
+  }
+
+  .about-image-box img{
+    width: 30vw;
   }
 
   .about__text.second {
