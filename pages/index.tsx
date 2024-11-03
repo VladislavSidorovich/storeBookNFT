@@ -728,7 +728,6 @@ const Home: NextPage = () => {
           <Container>
             <TabContainerMMACC>
                 <Tab
-                id="product"
                 active={activeTabMMACC === 'Доклады и сообщения'}
                 onClick={() => setActiveTabMMACC('Доклады и сообщения')}
                 >
