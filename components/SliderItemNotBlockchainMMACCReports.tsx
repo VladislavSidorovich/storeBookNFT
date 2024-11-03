@@ -53,7 +53,7 @@ function SliderItem({ id, price, name, supplyRemain, uri, previewText, actionTex
           date: "",
           fulltitle: "Доклад",
           preview: "Доклад",
-          authorInfo: "Попов С.В.",
+          authorInfo: "С.В Попов",
           attributes: ["атрибут1", "атрибут2"],
         };
         
@@ -69,7 +69,7 @@ function SliderItem({ id, price, name, supplyRemain, uri, previewText, actionTex
   return (
     <>
       {content && (
-        <div className="nft nftNotBlockchain">
+        <div className="nft nftNotBlockchain" id="product">
           <h3 className="nft__heading">{name}</h3>
           <p className="nft__caption"></p>
           <p className="nft__price">{price}</p>
