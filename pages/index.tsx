@@ -720,7 +720,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className="products methodology closedSection" id="product">
+      <section className="products methodology closedSection" id="products">
         <div className="container">
           <h2>
             Материалы ММАСС
@@ -728,6 +728,7 @@ const Home: NextPage = () => {
           <Container>
             <TabContainerMMACC>
                 <Tab
+                id="product"
                 active={activeTabMMACC === 'Доклады и сообщения'}
                 onClick={() => setActiveTabMMACC('Доклады и сообщения')}
                 >
