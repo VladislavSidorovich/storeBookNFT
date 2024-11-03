@@ -124,6 +124,15 @@ function Index() {
     return [...reversedBlockchainData, ...staticData];
   }, [titlesData, staticData]);
 
+  useEffect(() => {
+    if (combinedData) {
+      combinedData.forEach((el) => {
+        const previewUri = "result" in el ? el.result.uri : el.uri;
+        console.log(previewUri);
+      });
+    }
+  }, [combinedData]);
+
   return (
     <Swiper
       modules={[Pagination, Navigation]}
@@ -147,7 +156,7 @@ function Index() {
         combinedData.map((el, index) => (
           <SwiperSlide
             key={index}
-            className={index === 1 || index === 2 || index === 3 || index === 4 || index === 5 || index === 6 ? "hidden-slide" : ""}
+            className={index === 0 || index === 2 || index === 3 || index === 4 || index === 5 || index === 6 || index === 7 ? "hidden-slide" : ""}
           >
             {"result" in el ? (
               <SliderItem
