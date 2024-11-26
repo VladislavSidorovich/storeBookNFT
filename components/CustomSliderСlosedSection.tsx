@@ -100,6 +100,7 @@ function Index() {
       price: "",
       supplyRemain: 10,
       uri: "uri1",
+      authorInfo: "",
       previewText: "Превью статьи 1",
       actionText: "Читать статью 1",
     },
