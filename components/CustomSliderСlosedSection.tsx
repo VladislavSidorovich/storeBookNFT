@@ -1,10 +1,8 @@
-"use client";
-
 import { useEffect, useMemo, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import SliderItem from "./SliderItem";
-import SliderItemNotBlockchainMMACCReports from "./SliderItemNotBlockchainСlosedSection";
+import SliderItemNotBlockchainMMACCReports from "./SliderItemNotBlockchainMMACCReports";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
@@ -157,7 +155,7 @@ function Index() {
         combinedData.map((el, index) => (
           <SwiperSlide
             key={index}
-            className={index === 2 || index === 1 || index === 3 || index === 4 || index === 5 || index === 6 || index === 7 || index === 8 ? "hidden-slide" : ""}
+            className={index === 1 || index === 2 || index === 3 || index === 4 || index === 5 || index === 6 || index === 7 ? "hidden-slide" : ""}
           >
             {"result" in el ? (
               <SliderItem
