@@ -178,7 +178,7 @@ function Index() {
                 }
                 uri={el.result.uri ? el.result.uri : ""}
                 previewText={index === 3 ? "Превью" : "Превью статьи"}
-                actionText={index === 3 ? "Смотреть" : "Читать статью"}
+                actionText={index === 3 ? "Читать статью" : "Читать статью"}
               />
             ) : (
               <SliderItemNotBlockchain
